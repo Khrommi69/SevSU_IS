@@ -1,0 +1,108 @@
+body {
+        background-image: url(../img/Main_background.png);
+        background-repeat: no-repeat;
+        background-color: #001922;
+        background-attachment: scroll;
+        background-size: cover;
+
+        margin: 0;
+        padding: 0;
+}
+
+a:-webkit-any-link {
+        text-decoration: none;
+        color: black;
+}
+
+.container {
+        text-align: center;
+        width: 100%;
+        height: 100%;
+}
+
+#header {
+        background-image: url(../img/Head.png);
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        
+        background-size: cover;
+        overflow: hidden;
+        width: 100%;
+        height: 226px;
+}
+
+#menu {
+        width: 100%;
+        overflow: hidden;
+        margin-top: 1%;
+        margin-bottom: 1%;
+}
+#menu ul li {
+        display: inline-block;
+}
+
+#menu ul li a {
+        display: block;
+        padding-left: 1.5em;
+
+        color: white;
+        font-family: "Impact";
+        letter-spacing: 2px;
+        font-size: 3.2em;
+        list-style: none;
+        text-align: center;
+}
+
+#menu ul li a:hover {
+        color: yellow;
+}
+
+#content {
+        padding-top: 5%;
+        padding-bottom: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+        color: #fafff1;
+        width: 90%;
+        height: 100%;
+        overflow: visible;
+}
+
+#slogan {
+        /*top, right, left, bottom*/
+        margin: 0 auto;
+        display: inline-block;
+        margin-top: 5%;
+        margin-bottom: 2%;
+        width: 25%;
+
+        border-top: double;
+        border-bottom: double;
+
+        font-size: 2em;
+        font-family: American Typewriter, cursive;
+}
+
+#button {
+        display: block;
+        margin: 0 auto;
+        width: 15%;
+        background-color: yellow;
+        filter: opacity(75%);
+        border: ridge;
+        font-family: Comic Sans MS;
+}
+
+#button: hover {
+        color: red;
+}
+
+#footer {
+        position: fixed;
+        width: 100%;
+        left: 0; bottom: 0; /* Левый нижний угол */
+        padding: 0.3em; /* Поля вокруг текста */
+        background: radial-gradient(#022023, #000d13);
+        color: #fff7dc; /* Цвет текста */
+        font-family: Courier New, monospace;
+}

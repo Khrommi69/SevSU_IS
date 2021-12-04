@@ -1,0 +1,43 @@
+#contentForUS {
+        padding-top: 2%;
+        padding-bottom: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+        color: #fafff1;
+        width: 90%;
+        height: 100%;
+        overflow: visible;
+}
+
+#contentForUS p {
+	font-size: 22px;
+	font-family:  Lucida Console, monospace;
+	font-family: ;
+	padding-bottom: 3%;
+}
+
+#contentForUS #menu {
+        width: 100%;
+        overflow: hidden;
+        margin-top: 1%;
+        margin-bottom: 1%;
+}
+#contentForUS #menu ul li {
+        display: inline-block;
+}
+
+#contentForUS #menu ul li a {
+        display: block;
+        padding-left: 1.8em;
+
+        color: white;
+        font-family: Impact;
+        letter-spacing: 2px;
+        font-size: 2.6em;
+        list-style: none;
+        text-align: center;
+}
+
+#contentForUS #menu ul li a:hover {
+        color: #ffd4d4;
+}

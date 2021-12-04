@@ -1,0 +1,39 @@
+.contentInServices {
+        padding: 5%;
+        margin-bottom: 50%;
+        width: 90%;
+        height: 100%;
+        overflow: visible;
+        font-size: 25px;
+        color: #fafff1;
+        font-family: Verdana, sans-serif;
+}
+
+.priceLeft {
+        width: 49%;
+        float: left;
+}
+
+.priceRight {
+        width: 49%;
+        float: right;
+}
+
+.contentInServices p {
+        text-align: left;
+        color: #ff0000bc;
+        margin-bottom: 50px;
+}
+
+nameHaircut {
+        border-bottom: dotted;
+        font-size: 30px;
+        color: white;
+        float: left;
+}
+
+priceHaircut {
+        font-size: 30px;
+        color: white;
+        float: right;
+}
