@@ -1,0 +1,3 @@
+D:/SevSu/2_sem/Practice/second exercise/cmake-build-debug/CMakeFiles/second_exercise.dir
+D:/SevSu/2_sem/Practice/second exercise/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/SevSu/2_sem/Practice/second exercise/cmake-build-debug/CMakeFiles/rebuild_cache.dir

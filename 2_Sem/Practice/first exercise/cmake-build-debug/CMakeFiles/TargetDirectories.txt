@@ -1,0 +1,3 @@
+D:/SevSu/2_sem/Practice/test/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+D:/SevSu/2_sem/Practice/test/cmake-build-debug/CMakeFiles/test.dir
+D:/SevSu/2_sem/Practice/test/cmake-build-debug/CMakeFiles/edit_cache.dir
