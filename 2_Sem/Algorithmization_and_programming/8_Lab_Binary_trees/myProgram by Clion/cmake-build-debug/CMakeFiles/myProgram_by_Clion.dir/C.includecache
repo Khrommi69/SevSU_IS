@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/SevSu/2_sem/A i P/8/myProgram by Clion/main.c
+stdio.h
+-
+stdlib.h
+-
+windows.h
+-
+string.h
+-
+

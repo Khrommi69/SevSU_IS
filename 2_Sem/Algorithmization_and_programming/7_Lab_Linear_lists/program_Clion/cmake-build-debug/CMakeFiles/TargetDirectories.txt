@@ -1,0 +1,3 @@
+D:/SevSu/2_sem/A i P/7/programma moia/cmake-build-debug/CMakeFiles/programma_moia.dir
+D:/SevSu/2_sem/A i P/7/programma moia/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/SevSu/2_sem/A i P/7/programma moia/cmake-build-debug/CMakeFiles/rebuild_cache.dir

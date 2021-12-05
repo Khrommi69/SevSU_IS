@@ -1,0 +1,3 @@
+D:/SevSu/2_sem/A i P/8/myProgram by Clion/cmake-build-debug/CMakeFiles/myProgram_by_Clion.dir
+D:/SevSu/2_sem/A i P/8/myProgram by Clion/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/SevSu/2_sem/A i P/8/myProgram by Clion/cmake-build-debug/CMakeFiles/rebuild_cache.dir
