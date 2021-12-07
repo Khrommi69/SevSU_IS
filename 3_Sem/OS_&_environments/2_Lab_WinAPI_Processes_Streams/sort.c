@@ -18,68 +18,79 @@
 
 #include <stdio.h>
 #include <windows.h>
+#include <time.h>
 
 int main() {
-	unsigned int kol = 100; //кол-во повторений
-	unsigned int N = 3800; //кол-во элементов массива
-	
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	
-	SYSTEMTIME Tstrt, Tend, st1, st2;
-	// Зафиксировать время начала Tstrt выполенени программы
-    GetSystemTime(&Tstrt);
-    // Вывести на экран время Tstrt в формате минуты:секунды:миллисекунды
-    printf("Время начала выполнения программы: %d:%d:%d \n", Tstrt.wMinute, Tstrt.wSecond, Tstrt.wMilliseconds);
-    // Зафиксировать текущий момент времени t1
-    st1 = Tstrt;
+	system("color B0");
+	srand(time(0));
 
-	int k=0;
-	int i, arr[N], j, max, temp;
+	unsigned int kolRepetitions = 100; //кол-во повторений
+	unsigned int numElementsArray = 3800; //кол-во элементов массива
 	
-	for (; k<kol; k++){
+	// объявляем перменные в которых будем хранить время 0w0 !
+	SYSTEMTIME TimeStart, TimeEnd, time1, time2;
+
+	// Зафиксировать время начала выполенения программы
+    GetSystemTime(&TimeStart);
+
+    // Вывести на экран время Tstrt в формате минуты:секунды:миллисекунды
+    printf("Время начала выполнения программы: минуты:секунды:миллисекунды -> %02d:%02d:%03d \n\n",
+    	TimeStart.wMinute, TimeStart.wSecond, TimeStart.wMilliseconds);
+
+    // Зафиксировать текущий момент времени t1
+    time1 = TimeStart;
+
+	int array[numElementsArray];
+
+	// Для i от 1 до 100 повторять
+	for (int i = 0; i < kolRepetitions; i++){
 		// Заполнить массив целых чисел случайными числами из диапазона 0-10000
-	    srand(time(NULL));
-	    for (i=0; i<N; i++) {
-	    	arr[i] = rand()%10000;
+	    for (int j = 0; j < numElementsArray; j++) {
+	    	array[j] = rand()%10000;
 		}
 		
-		// Отсортировать массив (сортировка методом выбора по убыванию)
-		for (i=0; i<N-1; i++) {
-			for (max = i, j=i+1; j<N; j++) {
-				if (arr[j] > arr[max]) {
-					max = j;
+		// Отсортировать массив (сортировка пузырьком по убыванию)
+		for(int i2 = 0; i2 < numElementsArray - 1; i2++) { 
+			// сравниваем два соседних элемента.
+			for(int j = 0; j < numElementsArray - i2 - 1 ; j++) {  
+				if(array[j] < array[j+1]) {
+					int temp = array[j];
+					array[j] = array[j+1] ;
+					array[j+1] = temp; 
 				}
-			temp = arr[max];
-			arr[max] = arr[i];
-			arr[i] = temp;
-			}
+	        }
 		}
+
 	}
 	
 	// Зафиксировать текущий момент времени t2
-	GetSystemTime(&st2);
-	printf("Время выполнения программы после сортировок: %d:%d:%d \n", st2.wMinute, st2.wSecond, st2.wMilliseconds);
+	GetSystemTime(&time2);
+	printf("Время выполнения программы после сортировок: минуты:секунды:миллисекунды -> %02d:%02d:%03d \n\n",
+		time2.wMinute, time2.wSecond, time2.wMilliseconds);
 	
 	// Определить среднее вермя одной сортировки: (t2-t1)/100 и вывести на экран в мс
-	FILETIME ft1, ft2;
+	FILETIME fileTime1, fileTime2;
 	ULARGE_INTEGER li1, li2, dif;
 	// Преобразовать SystemTime -> FileTime
-	SystemTimeToFileTime(&st1, &ft1);
-	SystemTimeToFileTime(&st2, &ft2);
+	SystemTimeToFileTime(&time1, &fileTime1);
+	SystemTimeToFileTime(&time2, &fileTime2);
 	// Преобразовать FileTime -> ULARGE_INTEGER
-	li1.u.LowPart = ft1.dwLowDateTime;
-	li1.u.HighPart = ft1.dwHighDateTime;
-	li2.u.LowPart = ft2.dwLowDateTime;
-	li2.u.HighPart = ft2.dwHighDateTime;
+	li1.u.LowPart = fileTime1.dwLowDateTime;
+	li1.u.HighPart = fileTime1.dwHighDateTime;
+	li2.u.LowPart = fileTime2.dwLowDateTime;
+	li2.u.HighPart = fileTime2.dwHighDateTime;
 	// Вычитание t2-t1 и делим на кол-во сортировок
-	dif.QuadPart = (li2.QuadPart - li1.QuadPart)/kol;
-	printf("Для кол-ва элементов массива = %d и кол-ву сортировок = %d:\n", kol, N);
-	printf("Среднее время выполнения одной сортировки: %dms \n", dif.QuadPart/10000);
+	dif.QuadPart = (li2.QuadPart - li1.QuadPart) / 100;
+
+	printf("Для кол-ва элементов массива = %d и кол-ву сортировок = %d:\n\n", kolRepetitions, numElementsArray);
+	printf("среднее время выполнения одной сортировки = %03dms \n\n", dif.QuadPart/100);
 	
-	// Зафиксировать время окончания Tend выполнения программы и вывести на экран
-	GetSystemTime(&Tend);
-    printf("Время окончания выполнения программы: %d:%d:%d \n", Tend.wMinute, Tend.wSecond, Tend.wMilliseconds);
+	// Зафиксировать время окончания TimeEnd выполнения программы и вывести на экран
+	GetSystemTime(&TimeEnd);
+    printf("Время окончания выполнения программы: минуты:секунды:миллисекунды -> %02d:%02d:%03d \n\n",
+    	TimeEnd.wMinute, TimeEnd.wSecond, TimeEnd.wMilliseconds);
     
     printf("\n");
     system("pause");
