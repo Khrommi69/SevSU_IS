@@ -1,29 +1,14 @@
-// ДЛЯ СПРАВКИ
-//typedef union _ULARGE_INTEGER {
-//  struct {
-//    DWORD LowPart;
-//    DWORD HighPart;
-//  } DUMMYSTRUCTNAME;
-//  struct {
-//    DWORD LowPart;
-//    DWORD HighPart;
-//  } u;
-//  ULONGLONG QuadPart;
-//} ULARGE_INTEGER;
-//
-//typedef struct _FILETIME {
-//  DWORD dwLowDateTime;
-//  DWORD dwHighDateTime;
-//} FILETIME, *PFILETIME, *LPFILETIME;
-
 #include <stdio.h>
+#include <locale.h>
 #include <windows.h>
 #include <time.h>
 
-int main() {
+int main(int argc, char *argv[]) {
+	setlocale(LC_ALL, "Rus");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	system("color B0");
+
 	srand(time(0));
 
 	unsigned int kolRepetitions = 100; //кол-во повторений
@@ -45,24 +30,25 @@ int main() {
 	int array[numElementsArray];
 
 	// Для i от 1 до 100 повторять
-	for (int i = 0; i < kolRepetitions; i++){
+	int i, i2, j, temp;
+	for (i = 0; i < kolRepetitions; i++){
 		// Заполнить массив целых чисел случайными числами из диапазона 0-10000
-	    for (int j = 0; j < numElementsArray; j++) {
+	    for (j = 0; j < numElementsArray; j++) {
 	    	array[j] = rand()%10000;
 		}
 		
-		// Отсортировать массив (сортировка пузырьком по убыванию)
-		for(int i2 = 0; i2 < numElementsArray - 1; i2++) { 
-			// сравниваем два соседних элемента.
-			for(int j = 0; j < numElementsArray - i2 - 1 ; j++) {  
-				if(array[j] < array[j+1]) {
-					int temp = array[j];
-					array[j] = array[j+1] ;
-					array[j+1] = temp; 
+		// Отсортировать массив (сортировка Выбора по убыванию)
+		int max;
+		for (i2 = 0; i2 < numElementsArray-1; i2++) {
+			for (max = i2, j = i2+1; j < numElementsArray; j++) {
+				if (array[j] > array[max]) {
+					max = j;
 				}
-	        }
+				temp = array[max];
+				array[max] = array[i2];
+				array[i2] = temp;
+			}
 		}
-
 	}
 	
 	// Зафиксировать текущий момент времени t2
@@ -92,7 +78,8 @@ int main() {
     printf("Время окончания выполнения программы: минуты:секунды:миллисекунды -> %02d:%02d:%03d \n\n",
     	TimeEnd.wMinute, TimeEnd.wSecond, TimeEnd.wMilliseconds);
     
-    printf("\n");
+    printf("\n\n");
+
     system("pause");
     
 	return 0;
