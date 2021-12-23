@@ -21,7 +21,7 @@ int main(int argc, char const *argv[]) {
 	memset(&s, 0, sizeof(s));
     memset(&p, 0, sizeof(p));
 
-	HANDLE mtx = CreateMutex(NULL, TRUE, "MyMutexSort");  //+
+	HANDLE mtx = CreateMutex(NULL, FALSE, "MyMutexSort");  //+
 
     for (int i = 0; i < COL_PRC; i++) {
         s[i].cb = sizeof(STARTUPINFO); // должно быть записано, какой размер имеет стуктура
@@ -45,7 +45,7 @@ int main(int argc, char const *argv[]) {
 		}
 	}
 
-	ReleaseMutex(mtx); //+
+	// ReleaseMutex(mtx); //+
     WaitForSingleObject(p[0].hProcess, INFINITE);
     WaitForSingleObject(p[1].hProcess, INFINITE);
     WaitForSingleObject(p[2].hProcess, INFINITE);

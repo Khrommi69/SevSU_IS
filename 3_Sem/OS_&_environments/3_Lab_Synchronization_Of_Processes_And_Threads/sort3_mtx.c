@@ -42,6 +42,8 @@ int main(int argc, char const *argv[]) {
 	int arr[N];
 	//OpenMutex(Задает запрошенный доступ к объекту мьютекса, наследуется ли возвращаемый дескриптор, имя);
 	HANDLE mtx = OpenMutex(MUTEX_ALL_ACCESS, FALSE, "MyMutexSort"); //+
+	if(!mtx)
+		printf("mutex do not opened\n\a");
 
 	//заполнить массив целыми числами из диапазона 0-100
 	setArray(arr);
