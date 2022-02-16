@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/SevSU_IS/4_Sem/Theory of algorithms/1_lab ASYMPTOTIC ANALYSIS OF QUANTITATIVELY DEPENDENT/program/main.c
+math.h
+-
+stdio.h
+-
+
