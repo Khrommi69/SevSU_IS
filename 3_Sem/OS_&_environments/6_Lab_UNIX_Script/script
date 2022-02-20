@@ -1,0 +1,66 @@
+#!/bin/bash
+
+### Задание переменных ###
+FILE_LOG="$(basename "${0}").log"
+USER_NAME="Алексей"
+USER_NAME_REVERSED="йескелА"
+USER_SURNAME="Филозоп"
+USER_OTCH="Николаевич"
+USER_GROUP="ИС/б-20-2-о"
+
+DIR_NAME_1="${USER_SURNAME}.${USER_NAME}.${USER_GROUP:5}"
+DIR_NAME_2="${USER_SURNAME:0:1}.${USER_NAME:0:1}.${USER_OTCH:0:1}"
+
+file_third_name=""
+
+
+
+### Выполнение скрипта ###
+
+# Начало новой сессии
+echo -e "----- Начало новой сессии в $(date) -----" >>"${FILE_LOG}"
+
+# Содание дерева каталогов
+for i in `seq 1 1 3`; do
+	mkdir -p "${DIR_NAME_1}/${DIR_NAME_2}.${i}"
+done
+echo "[DEBUG] Создание нового дерева каталогов." | tee -a "${FILE_LOG}" >&1
+
+# Создание файла в первом каталоге
+echo "${USER_SURNAME} ${USER_NAME} ${USER_OTCH} ${USER_GROUP}" >"${DIR_NAME_1}/${DIR_NAME_2}.1/${USER_NAME}.txt"
+echo "[DEBUG] Создание файла в первом каталоге и запись информации в файл." | tee -a "${FILE_LOG}" >&1
+
+# Копирование файла во второй каталог и изменение имени
+cp "${DIR_NAME_1}/${DIR_NAME_2}.1/${USER_NAME}.txt" "${DIR_NAME_1}/${DIR_NAME_2}.2/${USER_NAME_REVERSED}.txt"
+echo "[DEBUG] Копирование файла во 2-ой каталог с изменением имени." | tee -a "${FILE_LOG}" >&1
+
+# Извлечение имени для третьего файла
+if [ "${1}" != "" ];
+then # Имя третьего файла было передано
+	file_third_name="${1}"
+else # Имя третьего файла передано не было
+	echo '[WARNING] Имя третьего файла не задано.' >>"${FILE_LOG}"
+	until [ "${file_third_name}" != "" ];
+	do
+		echo -n 'Введите имя для третьего файла: '
+		read file_third_name
+	done
+fi
+echo "[DEBUG] Установка имени третьего файла." >>"${FILE_LOG}"
+
+# Объединение файлов с созданием файла в третьем каталоге
+cat "${DIR_NAME_1}/${DIR_NAME_2}.1/${USER_NAME}.txt" "${DIR_NAME_1}/${DIR_NAME_2}.2/${USER_NAME_REVERSED}.txt" >"${DIR_NAME_1}/${DIR_NAME_2}.3/${file_third_name}.txt"
+echo "[DEBUG] Завершено объединение файлов." | tee -a "${FILE_LOG}" >&1
+
+# Вывод содержимого третьего файла
+echo "Содержимое файла \"${DIR_NAME_1}/${DIR_NAME_2}.3/${file_third_name}.txt\":"
+cat "${DIR_NAME_1}/${DIR_NAME_2}.3/${file_third_name}.txt"
+echo "[DEBUG] Вывод содержимого третьего файла." >>"${FILE_LOG}"
+
+# Перемещение третьего файла на каталог выше
+mv "${DIR_NAME_1}/${DIR_NAME_2}.3/${file_third_name}.txt" "${DIR_NAME_1}/${file_third_name}.txt"
+echo "[DEBUG] Перемещение файла в родительский каталог." | tee -a "${FILE_LOG}" >&1
+
+# Завершение сессии
+echo -e "---- Завершение сессии в $(date) -----\n\n" >>"${FILE_LOG}"
+exit 0
