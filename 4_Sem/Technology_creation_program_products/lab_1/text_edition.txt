@@ -1,0 +1,80 @@
+@startuml
+left to right direction
+
+actor Student as actor1
+actor Teacher as actor2
+actor "Main person" as actor3
+
+package "Учёба в университете" {
+  (учёба) as UC1
+  (быт) as UC2
+  (отдых) as UC3
+}
+ 
+package ВУЗ {
+    package расписание {
+    (Узнать расписание) as UC4
+    (Составить расписание) as UC4.1
+    (Расписание студента) as UC4.2
+    (Расписание преподавателей) as UC4.3
+    }
+    
+    package оценки {
+    (Оценки) as UC5
+    (Выставить оценки) as UC5.1
+    (Узнать оценки) as UC5.2
+    }
+    
+    package посещение {
+    (Посещение занятий) as UC6
+    (Выставить посещение) as UC6.1
+    (Узнать посещение) as UC6.2
+    }
+    
+    (Взять книгу в библиотеке) as UC7
+    
+    (Информация о проживании в общежитии) as UC8
+    
+    package новости {
+    (Новости ВУЗА) as UC9
+    (Добавить новость) as UC9.1
+    (Посмотреть новости) as UC9.2
+    }
+    
+    (Оплатить обучение) as UC10
+}
+
+
+'связи
+actor1 .> UC1 : include
+actor1 .> UC2 : include
+actor1 .> UC3 : include
+
+actor3 -- UC4.1
+UC4.2 <|- UC4.1
+UC4.3 <|- UC4.1
+UC1 -- UC4
+UC4 -|> UC4.2
+UC4 -|> UC4.3
+
+UC1 -- UC7
+UC1 -- UC8
+
+UC1 -- UC9.2
+actor3 -- UC9.1
+UC9 -- UC9.1
+UC9 -- UC9.2
+
+UC1 <. UC10 : extend
+
+UC1 -- UC5.2
+actor2 -- UC5.1
+UC5.1 -- UC5
+UC5.2 -- UC5
+
+UC1 -- UC6.2
+actor2 -- UC6.1
+UC6 -- UC6.2
+UC6 -- UC6.1
+
+@enduml
