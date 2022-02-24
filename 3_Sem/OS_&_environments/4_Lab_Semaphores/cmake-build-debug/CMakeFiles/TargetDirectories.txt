@@ -1,3 +1,0 @@
-D:/SevSU_IS/3_Sem/OS_&_environments/4_Lab_Semaphores/cmake-build-debug/CMakeFiles/4_Lab_Semaphores.dir
-D:/SevSU_IS/3_Sem/OS_&_environments/4_Lab_Semaphores/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/SevSU_IS/3_Sem/OS_&_environments/4_Lab_Semaphores/cmake-build-debug/CMakeFiles/rebuild_cache.dir
