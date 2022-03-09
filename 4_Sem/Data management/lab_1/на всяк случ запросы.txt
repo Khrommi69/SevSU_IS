@@ -1,0 +1,15 @@
+create database "D:\SevSU_IS\4_Sem\Data managment\lab_1\database\Khromenko.fdb"
+user 'SYSDBA' password 'masterkey'
+page_size = 4096
+default character set win1251;
+
+CREATE TABLE FRIENDS (
+FR_NUM INTEGER NOT NULL, F_NAME VARCHAR(10) NOT NULL, L_NAME VARCHAR(20) NOT NULL, AGE INTEGER CHECK (AGE BETWEEN 17 AND 21),
+SALARY INTEGER DEFAULT 0);
+
+INSERT INTO FRIENDS VALUES (1, 'Andrey', 'Bludin', 19, 0);
+INSERT INTO FRIENDS VALUES (2, 'Alexey', 'Philozop', 19, 3100);
+INSERT INTO FRIENDS (FR_NUM, F_NAME, L_NAME, SALARY) VALUES (3, 'Danil', 'Khokhlov', 35000);
+
+
+SELECT * FROM FRIENDS;
