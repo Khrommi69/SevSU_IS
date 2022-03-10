@@ -13,3 +13,6 @@ INSERT INTO FRIENDS (FR_NUM, F_NAME, L_NAME, SALARY) VALUES (3, 'Danil', 'Khokhl
 
 
 SELECT * FROM FRIENDS;
+
+
+CONNECT "D:\SevSU_IS\4_Sem\Data management\lab_1\database\Khromenko.fdb" user 'SYSDBA' password 'masterkey';
