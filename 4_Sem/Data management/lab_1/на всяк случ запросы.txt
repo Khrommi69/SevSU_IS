@@ -1,4 +1,4 @@
-create database "D:\SevSU_IS\4_Sem\Data managment\lab_1\database\Khromenko.fdb"
+create database "D:\SevSU_IS\4_Sem\Data management\lab_1\database\Khromenko.fdb"
 user 'SYSDBA' password 'masterkey'
 page_size = 4096
 default character set win1251;
@@ -13,6 +13,8 @@ INSERT INTO FRIENDS (FR_NUM, F_NAME, L_NAME, SALARY) VALUES (3, 'Danil', 'Khokhl
 
 
 SELECT * FROM FRIENDS;
+SELECT * FROM FRIENDS;
+SELECT * FROM FRIENDS;
 
 
-CONNECT "D:\SevSU_IS\4_Sem\Data management\lab_1\database\Khromenko.fdb" user 'SYSDBA' password 'masterkey';
+CONNECT "D:\SevSU_IS\4_Sem\Data management\lab_2\database\Khromenko.fdb" user 'SYSDBA' password 'masterkey';
