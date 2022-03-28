@@ -18,3 +18,6 @@ SELECT * FROM FRIENDS;
 
 
 CONNECT "D:\SevSU_IS\4_Sem\Data management\lab_2\database\Khromenko.fdb" user 'SYSDBA' password 'masterkey';
+SELECT * FROM FRIENDS; SELECT * FROM COMPANY; SELECT * FROM TYPES_OF_PREMISES;
+
+INSERT INTO FRIENDS VALUES (6, 'John', 'Rock', 20, 14000);
