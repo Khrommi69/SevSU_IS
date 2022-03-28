@@ -70,7 +70,7 @@ int main()
     VirtualProtect(base_address, TOTAL_MEMSIZE, PAGE_READWRITE, &old_sec_attrs);
 
     // Копирование данных из памяти общего доступа в память, выделенную с помощью VirtualAlloc |5.2.1.9|
-    CopyMemory(base_address, view, TOTAL_MEMSIZE);
+    // CopyMemory(base_address, view, TOTAL_MEMSIZE);
 
     // Печать данных на экран |5.2.1.10|
     for (size_t i = 0; i < TOTAL_MEMSIZE / sizeof(arr_elem_t); i++)
