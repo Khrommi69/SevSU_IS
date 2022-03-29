@@ -1,7 +1,7 @@
 "C:\Program Files\JetBrains\CLion 2020.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" "D:\SevSU_IS\4_Sem\Theory of algorithms\1_lab ASYMPTOTIC ANALYSIS OF QUANTITATIVELY DEPENDENT\program"
 -- The C compiler identification is GNU 8.1.0
--- Check for working C compiler: C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/gcc.exe
--- Check for working C compiler: C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/gcc.exe -- works
+-- Check for working C compiler: C:/Program Files/mingw-w64/mingw64/bin/gcc.exe
+-- Check for working C compiler: C:/Program Files/mingw-w64/mingw64/bin/gcc.exe -- works
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
 -- Detecting C compile features

@@ -48,7 +48,7 @@ int main() {
         ATg_GF = atan(Gn/Fn);
         pi = ATg_FG - ATg_GF;
         Delta = phi - pi;       //Оценка «Дельта»
-        Theta= fabs(pi) - phi;  //Оценка «Тетта»
+        Theta = fabs(pi) - phi;  //Оценка «Тетта»
         O_large = pi + phi;     //Оценка «О-большое»
         //Запись расчетов в файл
         fprintf(stream, "%-20.10lf %-20.10lf \t %-20.10lf\t %-20.10lf %-20.10lf %-20.10lf %-20.10lf %-20.10lf %-20.10lf\n",
