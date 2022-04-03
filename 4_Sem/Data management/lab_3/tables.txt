@@ -1,0 +1,192 @@
+DROP DATABASE;
+
+SELECT * FROM Company;
+SELECT * FROM Room_type;
+SELECT * FROM Room;
+SELECT * FROM Telephone;
+SELECT * FROM Counterparty;
+
+
+CREATE DATABASE "D:\SevSU_IS\4_Sem\Data management\lab_3\DATABASE.fdb"
+user 'SYSDBA' password 'masterkey'
+page_size = 4096
+default character set win1251;
+
+
+
+
+
+
+
+
+CREATE TABLE Company (
+	company_num     INTEGER           NOT NULL,
+	company_name    VARCHAR(20)       NOT NULL, 
+	company_adress  VARCHAR(100)      NOT NULL,
+	contact_person  VARCHAR(40)       NOT NULL,
+	bank_account    CHAR(20)          NOT NULL,
+	CONSTRAINT pk_Company PRIMARY KEY (company_num)
+);
+
+
+
+CREATE TABLE Room_type (
+	room_type_num  INTEGER,
+	room_type      VARCHAR(20),
+	PRIMARY KEY (room_type_num)
+);
+
+
+
+CREATE TABLE Room (
+	adress         VARCHAR(100) NOT NULL,
+	company_num    INTEGER      NOT NULL,
+	area_size      INTEGER      NOT NULL,
+	room_type_num  INTEGER,
+	PRIMARY KEY (adress, company_num),
+	FOREIGN KEY (room_type_num) REFERENCES Room_type (room_type_num),
+	FOREIGN KEY (company_num) REFERENCES Company (company_num)
+);
+
+
+
+CREATE TABLE Telephone (
+	adress       VARCHAR(100) NOT NULL,
+	company_num  INTEGER      NOT NULL,
+	phone_num    CHAR(12),
+	FOREIGN KEY (adress, company_num) REFERENCES Room (adress, company_num)
+);
+
+
+
+CREATE TABLE Counterparty (
+	seller_company_num  INTEGER  NOT NULL,
+	buyer_company_num   INTEGER  NOT NULL,
+	FOREIGN KEY (seller_company_num) REFERENCES Company (company_num),
+	FOREIGN KEY (buyer_company_num) REFERENCES Company (company_num)
+);
+
+
+
+
+
+
+
+
+
+
+INSERT INTO Company
+(company_num, company_name, company_adress, contact_person, bank_account) VALUES 
+(280040223, 'Sugar_daddy', '564813, Волгоградская область, город Подольск, бульвар Гагарина, 45', 'Копылов М. А.', '50607076300000000000');
+
+INSERT INTO Company
+(company_num, company_name, company_adress, contact_person, bank_account) VALUES 
+(74792076, 'Tasty_cookies', '668649, Иркутская область, город Шатура, шоссе Ладыгина, 88', 'Смирнова А. В.', '40871040100000000000');
+
+INSERT INTO Company
+(company_num, company_name, company_adress, contact_person, bank_account) VALUES 
+(317286530, 'Flour_master', '602059, Нижегородская область, город Чехов, пр. Будапештсткая, 62', 'Воронин А. М.', '40779036400000000000');
+
+INSERT INTO Company
+(company_num, company_name, company_adress, contact_person, bank_account) VALUES 
+(447095648, 'Yildiz', '870307, Смоленская область, город Ступино, бульвар Будапештсткая, 15', 'Ковалева В. М.', '50105375700000000000');
+
+
+
+INSERT INTO Counterparty
+(seller_company_num, buyer_company_num) VALUES (280040223, 74792076);
+
+INSERT INTO Counterparty
+(seller_company_num, buyer_company_num) VALUES (317286530, 74792076);
+
+INSERT INTO Counterparty
+(seller_company_num, buyer_company_num) VALUES (447095648, 74792076);
+
+
+
+INSERT INTO Room_type
+(room_type_num, room_type) VALUES (2983562, 'Кулуар');
+
+INSERT INTO Room_type
+(room_type_num, room_type) VALUES (8897460, 'Мастерская');
+
+INSERT INTO Room_type
+(room_type_num, room_type) VALUES (5442937, 'Цех');
+
+INSERT INTO Room_type
+(room_type_num, room_type) VALUES (6276751, 'Электрощитовая');
+
+INSERT INTO Room_type
+(room_type_num, room_type) VALUES (9077519, 'Офис');
+
+INSERT INTO Room_type
+(room_type_num, room_type) VALUES (3563600, 'Склад');
+
+INSERT INTO Room_type
+(room_type_num, room_type) VALUES (7323131, 'Техническое подполье');
+
+INSERT INTO Room_type
+(room_type_num) VALUES (2916324);
+
+INSERT INTO Room_type
+(room_type_num) VALUES (1473798);
+
+
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('129296, Орловская область, город Мытищи, шоссе Чехова, 76', 280040223, 159, 2983562);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('314799, Ульяновская область, город Пушкино, бульвар Домодедовская, 05', 280040224, 247, 7323131);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('546499, Архангельская область, город Талдом, шоссе Ладыгина, 73', 447095648, 116, 7323131);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('733171, Брянская область, город Шатура, спуск Ладыгина, 33', 317286530, 187, 7323131);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('753258, Волгоградская область, город Павловский Посад, проезд Славы, 52', 280040224, 245, 5442937);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('485934, Архангельская область, город Сергиев Посад, въезд Сталина, 07', 74792076, 167, 1473798);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('211738, Новосибирская область, город Воскресенск, шоссе Бухарестская, 30', 74792076, 6, 8897460);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('577097, Магаданская область, город Серебряные Пруды, пл. Гагарина, 63', 317286530, 257, 3563600);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('022652, Читинская область, город Раменское, въезд Бухарестская, 17', 447095648, 204, 9077519);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('766338, Магаданская область, город Подольск, ул. Ломоносова, 24', 317286530, 183, 3563600);
+
+INSERT INTO Room (adress, company_num, area_size) VALUES
+('860921, Тверская область, город Домодедово, пл. Космонавтов, 91', 447095648, 193);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('588852, Оренбургская область, город Домодедово, бульвар 1905 года, 72', 74792076, 67, 9077519);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('248314, Челябинская область, город Красногорск, пр. Гоголя, 71', 280040224, 157, 8897460);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('105518, Сахалинская область, город Дорохово, пер. Ломоносова, 22', 317286530, 296, 7323131);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
