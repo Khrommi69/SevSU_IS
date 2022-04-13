@@ -12,6 +12,8 @@ user 'SYSDBA' password 'masterkey'
 page_size = 4096
 default character set win1251;
 
+CONNECT "D:\SevSU_IS\4_Sem\Data management\lab_3\DATABASE.fdb" user 'SYSDBA' password 'masterkey';
+
 
 
 
