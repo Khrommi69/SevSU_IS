@@ -22,30 +22,27 @@ CONNECT "D:\SevSU_IS\4_Sem\Data management\lab_3\DATABASE.fdb" user 'SYSDBA' pas
 
 
 CREATE TABLE Company (
-	company_num     INTEGER           NOT NULL,
+	company_num     INTEGER           NOT NULL PRIMARY KEY,
 	company_name    VARCHAR(20)       NOT NULL, 
 	company_adress  VARCHAR(100)      NOT NULL,
 	contact_person  VARCHAR(40)       NOT NULL,
-	bank_account    CHAR(20)          NOT NULL,
-	CONSTRAINT pk_Company PRIMARY KEY (company_num)
+	bank_account    CHAR(20)          NOT NULL
 );
 
 
 
 CREATE TABLE Room_type (
-	room_type_num  INTEGER,
-	room_type      VARCHAR(20),
-	PRIMARY KEY (room_type_num)
+	room_type_num  INTEGER PRIMARY KEY,
+	room_type      VARCHAR(20)
 );
 
 
 
 CREATE TABLE Room (
-	adress         VARCHAR(100) NOT NULL,
+	adress         VARCHAR(100) NOT NULL PRIMARY KEY,
 	company_num    INTEGER      NOT NULL,
 	area_size      INTEGER      NOT NULL,
 	room_type_num  INTEGER,
-	PRIMARY KEY (adress, company_num),
 	FOREIGN KEY (room_type_num) REFERENCES Room_type (room_type_num),
 	FOREIGN KEY (company_num) REFERENCES Company (company_num)
 );
@@ -55,8 +52,9 @@ CREATE TABLE Room (
 CREATE TABLE Telephone (
 	adress       VARCHAR(100) NOT NULL,
 	company_num  INTEGER      NOT NULL,
-	phone_num    CHAR(12),
-	FOREIGN KEY (adress, company_num) REFERENCES Room (adress, company_num)
+	phone_num    VARCHAR(20),
+	FOREIGN KEY (adress) REFERENCES Room (adress),
+	FOREIGN KEY (company_num) REFERENCES Company (company_num)
 );
 
 
@@ -185,6 +183,161 @@ INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO Company
+(company_num, company_name, company_adress, contact_person, bank_account) VALUES 
+(280040223, 'Sugar_daddy', '564813, Volgograd region, Podolsk city, Gagarin Boulevard, 45', 'Kopylov M. A.', '50607076300000000000');
+
+INSERT INTO Company
+(company_num, company_name, company_adress, contact_person, bank_account) VALUES 
+(74792076, 'Tasty_cookies', '668649, Irkutsk region, Shatura city, Ladygina highway, 88', 'Smirnova A.V.', '40871040100000000000');
+
+INSERT INTO Company
+(company_num, company_name, company_adress, contact_person, bank_account) VALUES 
+(317286530, 'Flour_master', '602059, Budapest Ave., Chekhov, Nizhny Novgorod region 62', 'Voronin A. M.', '40779036400000000000');
+
+INSERT INTO Company
+(company_num, company_name, company_adress, contact_person, bank_account) VALUES 
+(447095648, 'Yildiz', '870307, Smolensk region, Stupino city, Budapest Boulevard, 15', 'Kovaleva V. M.', '50105375700000000000');
+
+
+
+INSERT INTO Counterparty
+(seller_company_num, buyer_company_num) VALUES (280040223, 74792076);
+
+INSERT INTO Counterparty
+(seller_company_num, buyer_company_num) VALUES (317286530, 74792076);
+
+INSERT INTO Counterparty
+(seller_company_num, buyer_company_num) VALUES (447095648, 74792076);
+
+
+
+INSERT INTO Room_type
+(room_type_num, room_type) VALUES (2983562, 'Couloir');
+
+INSERT INTO Room_type
+(room_type_num, room_type) VALUES (8897460, 'Workshop');
+
+INSERT INTO Room_type
+(room_type_num, room_type) VALUES (5442937, 'Shop');
+
+INSERT INTO Room_type
+(room_type_num, room_type) VALUES (6276751, 'Electrical panel');
+
+INSERT INTO Room_type
+(room_type_num, room_type) VALUES (9077519, 'Office');
+
+INSERT INTO Room_type
+(room_type_num, room_type) VALUES (3563600, 'Warehouse');
+
+INSERT INTO Room_type
+(room_type_num, room_type) VALUES (7323131, 'Technical under...');
+
+INSERT INTO Room_type
+(room_type_num) VALUES (2916324);
+
+INSERT INTO Room_type
+(room_type_num) VALUES (1473798);
+
+
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('129296, Orel region, city of Mytishchi, Chekhov highway, 76', 280040223, 159, 2983562);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('314799, Ulyanovsk region, Pushkino city, Domodedovo Boulevard, 05', 280040223, 247, 7323131);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('546499, Arkhangelsk region, Taldom city, Ladygin highway, 73', 447095648, 116, 7323131);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('733171, Bryansk region, Shatura city, Ladygin descent, 33', 317286530, 187, 7323131);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('753258, Volgograd region, the city of Pavlovsky Posad, Slava passage, 52', 280040223, 245, 5442937);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('485934, Arkhangelsk region, Sergiev Posad, Stalins entrance, 07', 74792076, 167, 1473798);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('211738, Novosibirsk region, the city of Voskresensk, highway Bucharest, 30', 74792076, 6, 8897460);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('577097, Magadan region, the city of Silver Ponds, Gagarin Square, 63', 317286530, 257, 3563600);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('022652, Chita region, Ramenskoye city, Bucharest entrance, 17', 447095648, 204, 9077519);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('766338, Magadan region, Podolsk, Lomonosov str., 24', 317286530, 183, 3563600);
+
+INSERT INTO Room (adress, company_num, area_size) VALUES
+('860921, Tver region, Domodedovo city, Cosmonauts Square, 91', 447095648, 193);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('588852, Orenburg region, Domodedovo city, 1905 boulevard, 72', 74792076, 67, 9077519);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('248314, Gogol Ave., Krasnogorsk, Chelyabinsk Region 71', 280040223, 157, 8897460);
+
+INSERT INTO Room (adress, company_num, area_size, room_type_num) VALUES
+('105518, Sakhalin region, Dorokhovo city, lane. Lomonosov, 22', 317286530, 296, 7323131);
+
+
+INSERT INTO Telephone (adress, company_num, phone_num) VALUES
+('129296, Orel region, city of Mytishchi, Chekhov highway, 76', 280040223, '+7 (917) 921-43-15');
+
+INSERT INTO Telephone (adress, company_num, phone_num) VALUES
+('314799, Ulyanovsk region, Pushkino city, Domodedovo Boulevard, 05', 280040223, '+7 (936) 293-61-29');
+
+INSERT INTO Telephone (adress, company_num, phone_num) VALUES
+('546499, Arkhangelsk region, Taldom city, Ladygin highway, 73', 447095648, '+7 (953) 243-45-28');
+
+INSERT INTO Telephone (adress, company_num, phone_num) VALUES
+('733171, Bryansk region, Shatura city, Ladygin descent, 33', 317286530, '+7 (989) 785-16-63');
+
+INSERT INTO Telephone (adress, company_num, phone_num) VALUES
+('753258, Volgograd region, the city of Pavlovsky Posad, Slava passage, 52', 280040223, '+7 (957) 469-96-49');
+
+INSERT INTO Telephone (adress, company_num, phone_num) VALUES
+('485934, Arkhangelsk region, Sergiev Posad, Stalins entrance, 07', 74792076, '+7 (973) 622-62-47');
+
+INSERT INTO Telephone (adress, company_num, phone_num) VALUES
+('211738, Novosibirsk region, the city of Voskresensk, highway Bucharest, 30', 74792076, '+7 (998) 814-35-97');
+
+INSERT INTO Telephone (adress, company_num, phone_num) VALUES
+('577097, Magadan region, the city of Silver Ponds, Gagarin Square, 63', 317286530, '+7 (954) 675-54-12');
+
+INSERT INTO Telephone (adress, company_num, phone_num) VALUES
+('022652, Chita region, Ramenskoye city, Bucharest entrance, 17', 447095648, '+7 (990) 670-11-83');
+
+INSERT INTO Telephone (adress, company_num, phone_num) VALUES
+('766338, Magadan region, Podolsk, Lomonosov str., 24', 317286530, '+7 (960) 893-55-81');
+
+INSERT INTO Telephone (adress, company_num) VALUES
+('860921, Tver region, Domodedovo city, Cosmonauts Square, 91', 447095648);
+
+INSERT INTO Telephone (adress, company_num) VALUES
+('588852, Orenburg region, Domodedovo city, 1905 boulevard, 72', 74792076);
+
+INSERT INTO Telephone (adress, company_num, phone_num) VALUES
+('248314, Gogol Ave., Krasnogorsk, Chelyabinsk Region 71', 280040223, '+7 (913) 849-82-92');
+
+INSERT INTO Telephone (adress, company_num, phone_num) VALUES
+('105518, Sakhalin region, Dorokhovo city, lane. Lomonosov, 22', 317286530, '+7 (925) 618-64-30');
 
 
 
