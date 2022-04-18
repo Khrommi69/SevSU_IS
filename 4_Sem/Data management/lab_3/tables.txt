@@ -14,6 +14,8 @@ default character set win1251;
 
 CONNECT "D:\SevSU_IS\4_Sem\Data management\lab_3\DATABASE.fdb" user 'SYSDBA' password 'masterkey';
 
+connect "D:\SevSU_IS\4_Sem\Data management\lab_3\DATABASERUS.FDB" user 'SYSDBA' password 'masterkey';
+
 
 
 
