@@ -1,0 +1,37 @@
+CONNECT "D:\SevSU_IS\4_Sem\Data management\lab_5\DATABASE.FDB" user 'SYSDBA' password 'masterkey';
+
+SHOW TABLES;
+SELECT * FROM COMPANY;
+SELECT * FROM ROOM;
+SELECT * FROM ROOM_TYPE;
+SELECT * FROM TELEPHONE;
+SELECT * FROM COUNTERPARTY;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
