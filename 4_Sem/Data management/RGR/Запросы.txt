@@ -1,0 +1,227 @@
+1. CREATE DATABASE "D:\SevSU_IS\4_Sem\Data management\RGR\firma.fdb"
+   user 'SYSDBA' password 'masterkey'
+   page_size = 4096
+   default character set win1251;
+
+	CONNECT "D:\SevSU_IS\4_Sem\Data management\RGR\firma.fdb"
+	user 'SYSDBA' password 'masterkey';
+	
+	DROP DATABASE;
+
+CREATE TABLE S (
+	id    INTEGER     NOT NULL PRIMARY KEY,
+	FIO   VARCHAR(20) NOT NULL,
+	money INTEGER     NOT NULL,
+	city  VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE P (
+	id     INTEGER     NOT NULL PRIMARY KEY,
+	name   VARCHAR(20) NOT NULL,
+	color  CHAR(7)     NOT NULL,
+	weight INTEGER     NOT NULL,
+	city   VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE SP (
+	id_post  INTEGER NOT NULL,
+	id_det   INTEGER NOT NULL,
+	quantity INTEGER NOT NULL,
+	FOREIGN KEY (id_post) REFERENCES S (id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (id_det)  REFERENCES P (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO S (id, FIO, money, city) VALUES (1, 'Ivanov I.I.'  , 50000 , 'London');
+INSERT INTO S (id, FIO, money, city) VALUES (2, 'Petrov P.P.'  , 20000 , 'Moscow');
+INSERT INTO S (id, FIO, money, city) VALUES (3, 'Sidorov S.S.' , 150000, 'Paris');
+INSERT INTO S (id, FIO, money, city) VALUES (4, 'Vasiliev V.V.', 300000, 'London');
+INSERT INTO S (id, FIO, money, city) VALUES (5, 'Semenov S.S.' , 70000 , 'Kyiv');
+
+INSERT INTO P (id, name, color, weight, city) VALUES (1, 'Bolt'      , '#000000', 34, 'Kyiv');
+INSERT INTO P (id, name, color, weight, city) VALUES (4, 'Screw'     , '#FF0000', 67, 'Kyiv');
+INSERT INTO P (id, name, color, weight, city) VALUES (3, 'Nut_little', '#FFFF00', 18, 'London');
+INSERT INTO P (id, name, color, weight, city) VALUES (2, 'Nail'      , '#FFFFFF', 56, 'Paris');
+INSERT INTO P (id, name, color, weight, city) VALUES (5, 'Loop'      , '#00FF00', 90, 'Moscow');
+
+INSERT INTO SP (id_post, id_det, quantity) VALUES (2, 3, 120);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (2, 4, 190);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (2, 5, 15);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (1, 4, 18);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (3, 5, 190);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (5, 5, 200);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (1, 5, 100);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (2, 2, 20);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (3, 1, 150);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (4, 3, 30);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (5, 4, 18);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (2, 1, 25);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (1, 3, 14);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (4, 5, 22);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (1, 2, 67);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (3, 3, 15);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (4, 1, 18);
+INSERT INTO SP (id_post, id_det, quantity) VALUES (5, 1, 217);
+
+SELECT id FROM P;
+
+ALTER TABLE P ADD Material VARCHAR(20);
+SHOW TABLE P TYPE;
+
+SELECT * FROM S
+WHERE city <> 'Paris';
+
+SELECT id, money FROM S
+WHERE city = 'London';
+
+SELECT id, money FROM S
+WHERE city = 'Moscow' AND money < 30000
+ORDER BY money;
+
+SELECT * FROM S;
+
+SELECT * FROM P
+WHERE weight BETWEEN 20 AND 50;
+
+SELECT id, weight*454 FROM P;
+
+SELECT id FROM P
+WHERE weight = 13 OR weight = 17 OR weight = 25;
+
+SELECT * FROM P
+WHERE name STARTING WITH 'S';
+
+SELECT * FROM P
+WHERE name LIKE '%_p';
+
+SELECT * FROM P
+WHERE name LIKE '_%u%_';
+
+SELECT * FROM P
+WHERE name LIKE '__i%';
+
+
+SELECT * FROM P
+WHERE name  CONTAINING '_';
+
+SELECT * FROM S, P
+WHERE S.city = P.city;
+
+SELECT * FROM S JOIN P
+ON S.city = P.city;
+
+UPDATE P SET color = '#FFFF00', weight = weight+3, city = '<null>'
+WHERE id = 2;
+SELECT * FROM P WHERE id = 2;
+
+ALTER TABLE P DROP MATERIAL;
+SHOW TABLE P TYPE;
+
+SELECT * from S WHERE city = 'Paris';
+UPDATE S SET money = money*4
+WHERE city = 'Paris';
+SELECT * from S WHERE city = 'Paris';
+
+DELETE FROM S WHERE CITY = 'Paris';
+SELECT * FROM S;
+
+INSERT INTO P (id, name, color, city, weight) VALUES (6, 'Tape', '#FF9900', 'Sevastopol', 0);
+SELECT * FROM P;
+
+SELECT id FROM P WHERE weight = 0;
+
+SELECT COUNT(DISTINCT id_post) FROM SP;
+
+SELECT id_post, SUM(quantity) FROM SP
+GROUP BY id_post;
+
+SELECT id_det, SUM(quantity) AS SUM_quantity FROM SP
+WHERE id_post != 3
+GROUP BY id_det;
+
+SELECT DISTINCT id_det FROM SP main
+WHERE 1 < (SELECT DISTINCT COUNT(id_post) FROM SP 
+	     WHERE id_det = main.id_det);
+
+SELECT FIO, id_det, quantity FROM S, SP
+WHERE S.id = SP.id_post;
+
+SELECT FIO, id_det, quantity FROM S
+JOIN SP ON S.id = SP.id_post;
+
+SELECT FIO, name FROM S, P, SP
+WHERE S.id = SP.id_post AND P.id = SP.id_det;
+
+SELECT FIO, name FROM S
+JOIN SP ON S.id = SP.id_post
+JOIN P ON P.id = SP.id_det;
+
+SELECT one.FIO, two.FIO FROM S one
+CROSS JOIN S two
+WHERE one.city = two.city AND one.FIO < two.FIO;
+
+SELECT FIO FROM S, SP
+WHERE S.id = SP.id_post AND id_det = 1;
+
+SELECT FIO FROM S
+JOIN SP ON S.id = SP.id_post AND id_det = 1;
+
+SELECT FIO FROM S, P, SP
+WHERE S.id = SP.id_post AND SP.id_det = P.id AND P.color = '#FF0000';
+
+SELECT FIO FROM S
+JOIN SP ON S.id = SP.id_post
+JOIN P ON SP.id_det = P.id AND P.color = '#FF0000';
+
+===========================================================================
+SELECT DISTINCT s.id, s.fio FROM S, SP
+WHERE S.id = SP.id_post AND 
+SP.id_det = any (SELECT id_det FROM SP
+			WHERE id_post = 3);
+select distinct s.id, s.fio from s, sp where s.id = sp.id_post and sp.id_det = any (select id_det from sp where id_post = 3);
+===========================================================================
+
+SELECT DISTINCT id_post FROM SP main
+WHERE EXISTS (SELECT id_det FROM SP
+		  WHERE main.id_det = id_det);
+
+SELECT DISTINCT id_post FROM SP main
+WHERE NOT EXISTS (SELECT id_det FROM SP
+		  WHERE main.id_det = id_det);
+
+SELECT DISTINCT S.id FROM S
+WHERE (SELECT COUNT(SP.id_det) from SP WHERE SP.id_post = S.id) 
+    = (SELECT COUNT(P.id) FROM P);
+
+SELECT DISTINCT id FROM P
+WHERE id != ALL (SELECT id_det FROM SP WHERE id_post = 1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
