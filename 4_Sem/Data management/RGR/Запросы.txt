@@ -1,7 +1,11 @@
-1. CREATE DATABASE "D:\SevSU_IS\4_Sem\Data management\RGR\firma.fdb"
-   user 'SYSDBA' password 'masterkey'
-   page_size = 4096
-   default character set win1251;
+=====================================================================================================================================
+                         1
+=====================================================================================================================================
+
+CREATE DATABASE "D:\SevSU_IS\4_Sem\Data management\RGR\firma.fdb"
+user 'SYSDBA' password 'masterkey'
+page_size = 4096
+default character set win1251;
 
 	CONNECT "D:\SevSU_IS\4_Sem\Data management\RGR\firma.fdb"
 	user 'SYSDBA' password 'masterkey';
@@ -195,12 +199,151 @@ WHERE (SELECT COUNT(SP.id_det) from SP WHERE SP.id_post = S.id)
 SELECT DISTINCT id FROM P
 WHERE id != ALL (SELECT id_det FROM SP WHERE id_post = 1);
 
+SELECT id FROM P
+WHERE weight > 34
+UNION 
+SELECT id_det FROM SP
+WHERE id_post = 3;
+
+SELECT name FROM P, SP
+WHERE id = id_det AND id_post = 2;
+
+SELECT name FROM P
+JOIN SP ON id = id_det AND id_post = 2;
+
+SELECT id FROM S
+WHERE money < (SELECT MAX(money) FROM S);
+
+SELECT id, money, city FROM S main
+WHERE money >= (SELECT AVG(money) FROM S WHERE main.city = city);
+
+============================================
+Commit;
+DROP TABLE Temp1;
+
+CREATE TABLE Temp1 (
+	id INTEGER NOT NULL,
+	quantity INTEGER);
+
+INSERT INTO Temp1 (id, quantity) 
+SELECT id_det, SUM(quantity) FROM SP
+GROUP BY id_det;
+
+SELECT * FROM Temp1;
+============================================
+
+SELECT id_post, id_det FROM SP main
+WHERE quantity = (SELECT MAX(quantity) FROM SP WHERE id_post = main.id_post)
+ORDER BY id_post;
+
+SELECT S.fio, P.name FROM S, P, SP main
+WHERE S.id = main.id_post AND P.id = main.id_det AND
+quantity = (SELECT MAX(quantity) FROM SP WHERE id_post = main.id_post);
+
+SELECT S.FIO, P.name FROM S
+JOIN SP main ON S.id = main.id_post AND 
+quantity = (SELECT MAX(quantity) FROM SP WHERE id_post = main.id_post)
+JOIN P ON P.id = main.id_det;
 
 
+=====================================================================================================================================
+                         2
+=====================================================================================================================================
+
+SELECT fio, money FROM S
+WHERE city != 'Sevastopol' AND
+id IN (SELECT id_post FROM SP, P WHERE id_det = P.id AND P.color = '#FF0000');
+
+SELECT DISTINCT id_det FROM SP
+WHERE id_post IN (SELECT id FROM S WHERE city != 'Sevastopol');
+
+SELECT DISTINCT id_det, SUM(quantity) as quantity_Sum FROM SP
+WHERE id_det IN (SELECT id FROM P WHERE name != 'Bolt')
+GROUP BY id_det;
+
+ALTER TABLE SP ADD 
+Detail_Quality INTEGER DEFAULT 5 CHECK (Detail_Quality > 0 AND Detail_Quality < 6);
+
+ALTER TABLE P DROP COLOR;
 
 
+=====================================================================================================================================
+                         3
+=====================================================================================================================================
+
+CREATE DATABASE "D:\SevSU_IS\4_Sem\Data management\RGR\workers.fdb"
+user 'SYSDBA' password 'masterkey'
+page_size = 4096
+default character set win1251;
+
+	CONNECT "D:\SevSU_IS\4_Sem\Data management\RGR\workers.fdb"
+	user 'SYSDBA' password 'masterkey';
+	
+	DROP DATABASE;
+
+CREATE TABLE EMPLOYEE (
+	id_emp     INTEGER NOT NULL,
+	surname    VARCHAR(15),
+	address    VARCHAR(30),
+	experience INTEGER,
+	specialty  VARCHAR(20),
+	id_dep     INTEGER
+);
+
+CREATE TABLE LABOR_ACTIVITY (
+	id_emp     INTEGER NOT NULL,
+	id_book    INTEGER,
+	id_reg     INTEGER,
+	fio        VARCHAR(20),
+	experience INTEGER,
+	date_enr   CHAR(10),
+	date_dis   CHAR(10),
+	reason_dis VARCHAR(20)
+);
+
+CREATE TABLE COMPANY (
+	id_reg  INTEGER NOT NULL,
+	name    VARCHAR(20),
+	id_dep  INTEGER,
+	num_emp INTEGER
+);
+
+INSERT INTO EMPLOYEE (id_emp, surname, address, experience, specialty, id_dep) VALUES
+(1, 'Khromenko', 'Sevastopol', 18, 'Lazy_person', 54);
+INSERT INTO EMPLOYEE (id_emp, surname, address, experience, specialty, id_dep) VALUES
+(2, 'Khokhlov', 'Anapa', 1, 'Licker', 54);
+INSERT INTO EMPLOYEE (id_emp, surname, address, experience, specialty, id_dep) VALUES
+(3, 'Kapustin', 'Krasnodar', 2, 'Trader', 13);
+INSERT INTO EMPLOYEE (id_emp, surname, address, experience, specialty, id_dep) VALUES
+(4, 'Kozeryuk', 'Moscow', 2, 'Inagent', 13);
+INSERT INTO EMPLOYEE (id_emp, surname, address, experience, specialty, id_dep) VALUES
+(5, 'Bludin', 'Saint-Petersburg', 2, 'Investor', 54);
+
+INSERT INTO LABOR_ACTIVITY (id_emp, id_book, id_reg, fio, experience, date_enr, date_dis, reason_dis) VALUES
+(1, 1111, 54, 'Khromenko D.A.', 18, '14.10.2003', '18.05.2022', 'Balvan');
+INSERT INTO LABOR_ACTIVITY (id_emp, id_book, id_reg, fio, experience, date_enr, date_dis, reason_dis) VALUES
+(2, 2222, 54, 'Khokhlov D.V.', 1, '26.01.2022', '27.09.2022', 'Balvan');
+INSERT INTO LABOR_ACTIVITY (id_emp, id_book, id_reg, fio, experience, date_enr, date_dis, reason_dis) VALUES
+(3, 3333, 13, 'Kapustin I.B.', 2, '05.02.2020', '01.01.2025', 'Boor');
+INSERT INTO LABOR_ACTIVITY (id_emp, id_book, id_reg, fio, experience, date_enr, date_dis, reason_dis) VALUES
+(4, 4444, 13, 'Kozeryuk S.B.', 2, '09.09.2020', '18.06.2093', 'Boor');
+INSERT INTO LABOR_ACTIVITY (id_emp, id_book, id_reg, fio, experience, date_enr, date_dis, reason_dis) VALUES
+(5, 5555, 54, 'Bludin A.I.', 2, '01.07.2021', '14.10.2093', 'Boor');
 
 
+INSERT INTO COMPANY (id_reg, name, id_dep, num_emp) VALUES
+(54, 'Uralmarsh', 54, 2003);
+INSERT INTO COMPANY (id_reg, name, id_dep, num_emp) VALUES
+(69, 'khokhlov_industry', 69, 269);
+INSERT INTO COMPANY (id_reg, name, id_dep, num_emp) VALUES
+(13, 'Mebelhr', 13, 154);
+
+SELECT * FROM EMPLOYEE
+WHERE id_dep = (SELECT id_dep FROM COMPANY WHERE name = 'Uralmarsh');
+
+SELECT COUNT(reason_dis), reason_dis FROM LABOR_ACTIVITY
+WHERE id_reg = 13
+GROUP BY reason_dis;
 
 
 
