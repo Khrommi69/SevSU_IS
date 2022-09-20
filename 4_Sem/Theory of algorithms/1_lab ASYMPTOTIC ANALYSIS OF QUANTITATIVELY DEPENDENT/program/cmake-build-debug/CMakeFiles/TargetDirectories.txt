@@ -1,3 +1,0 @@
-D:/SevSU_IS/4_Sem/Theory of algorithms/1_lab ASYMPTOTIC ANALYSIS OF QUANTITATIVELY DEPENDENT/program/cmake-build-debug/CMakeFiles/program.dir
-D:/SevSU_IS/4_Sem/Theory of algorithms/1_lab ASYMPTOTIC ANALYSIS OF QUANTITATIVELY DEPENDENT/program/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/SevSU_IS/4_Sem/Theory of algorithms/1_lab ASYMPTOTIC ANALYSIS OF QUANTITATIVELY DEPENDENT/program/cmake-build-debug/CMakeFiles/rebuild_cache.dir
