@@ -9,4 +9,10 @@
 D:/SevSU_IS/4_Sem/Theory of algorithms/2_lab/program/main.cpp
 iostream
 -
+cmath
+-
+cstdlib
+-
+ctime
+-
 

@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/SevSU_IS/4_Sem/Theory of algorithms/6_lab/Program/main.cpp
+iostream
+-
+chrono
+-
+stdlib.h
+-
+time.h
+-
+algorithm
+-
+random
+-
+string.h
+-
+
