@@ -1,0 +1,3 @@
+D:/SevSU_IS/4_Sem/Theory of algorithms/8_lab/Program/cmake-build-debug/CMakeFiles/Program.dir
+D:/SevSU_IS/4_Sem/Theory of algorithms/8_lab/Program/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/SevSU_IS/4_Sem/Theory of algorithms/8_lab/Program/cmake-build-debug/CMakeFiles/rebuild_cache.dir
