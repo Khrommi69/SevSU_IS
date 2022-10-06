@@ -1,0 +1,25 @@
+﻿  builder.cpp
+  bus.cpp
+C:\Users\ILoveMemes\source\repos\Traffic\Traffic\bus.cpp(9,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ILoveMemes\source\repos\Traffic\Traffic\bus.cpp(91,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ILoveMemes\source\repos\Traffic\Traffic\bus.cpp(189,20): warning C4018: '<': signed/unsigned mismatch
+  busstop.cpp
+C:\Users\ILoveMemes\source\repos\Traffic\Traffic\busstop.cpp(79,23): warning C4018: '<': signed/unsigned mismatch
+  entity.cpp
+  experiment.cpp
+C:\Users\ILoveMemes\source\repos\Traffic\Traffic\experiment.cpp(52,20): warning C4018: '<': signed/unsigned mismatch
+  inputreader.cpp
+  main.cpp
+  outputwriter.cpp
+C:\Users\ILoveMemes\source\repos\Traffic\Traffic\outputwriter.cpp(30,21): warning C4018: '<': signed/unsigned mismatch
+  passenger.cpp
+  random.cpp
+  route.cpp
+C:\Users\ILoveMemes\source\repos\Traffic\Traffic\route.cpp(25,28): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ILoveMemes\source\repos\Traffic\Traffic\route.cpp(91,23): warning C4018: '<': signed/unsigned mismatch
+  statcollector.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 703 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Traffic.vcxproj -> C:\Users\ILoveMemes\source\repos\Traffic\Release\Traffic.exe

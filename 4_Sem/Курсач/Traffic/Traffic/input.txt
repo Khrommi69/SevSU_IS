@@ -1,0 +1,13 @@
+busVelocity 40.0
+busstopWaitingTime 10.0
+seatLimit 18
+busCount 2
+boardingTime 7.0
+initPassengersLowCount 0
+initPassengersHighCount 10
+passengerLowSpawnTime 300.0
+passengerHighSpawnTime 3000.0
+busstops 10
+0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0
+dt 1.0
+modelingTime 10000.0
